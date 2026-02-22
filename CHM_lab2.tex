@@ -1,0 +1,547 @@
+\documentclass[a4paper,14pt]{article}
+\usepackage[14pt]{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage[T1, T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage{array}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{upquote}
+\usepackage{listings}
+\usepackage{import}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{tabu}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{indentfirst}
+\usepackage{src/title}
+\usepackage{bookmark}
+\usepackage{hyperref}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\lstset{extendedchars=\true}
+
+\geometry{
+    a4paper,
+    left=15mm,
+    right=15mm,
+    top=15mm,
+    bottom=15mm
+}
+
+\begin{document}
+\begin{titlepage}
+    \begin{minipage}{0.45\textwidth}\raggedright
+        \begin{center}
+            \textbf{Университет ИТМО \\
+            \vspace{0.1cm}
+            Мегафакультет компьютерных технологий и управления \\
+            \vspace{0.1cm}
+            Факультет систем управления и робототехники
+            }
+        \end{center}
+    \end{minipage}
+    \hfill
+    \noindent\begin{minipage}{0.5\textwidth}
+
+    \end{minipage}
+
+    \vspace{4cm}
+    \hrule % Горизонтальная линия
+    \vspace{1cm}
+
+    % \begin{tabular}{|m{8cm}|m{8cm}|}
+
+     Работу выполнили: \uline{Тарасов Степан, Пономарёв Илья, Мусаев Фуад}\\
+    \vspace{0.3cm}
+    Преподаватель:  \uline{Пашенко Артём Витальевич}\\
+
+    
+    \vspace{1cm}
+    \hrule % Горизонтальная линия
+\
+
+    \vspace{4cm}
+
+    \hrule
+
+    \vspace{0.7cm}
+    
+    \begin{center}
+        \textbf{\Large Лабораторная работа №2 по дисциплине "Частотные методы"}
+    
+        \vspace{0.7cm}
+        \hrule % Горизонтальная линия
+        \vspace{0.5cm}
+    \Large \textbf{Преобразование Фурье}
+        %\textbf{\large{Моделирование работы RC-фильтра}}
+        %\vspace{0.5cm}
+        %\hrule
+        %\vspace{1cm}
+        
+        \vfill
+        Санкт-Петербург, 2026
+    \end{center}
+\end{titlepage}
+
+
+\newpage
+\section*{Задание 1. Вещественное}
+\subsection*{1. Выполним унитарное преобразование Фурье для каждой функции}
+Унитарное преобразование Фурье происходит по следующей формуле:
+\begin{equation*}
+    \hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^{\infty}f(t)e^{-i\omega t}dt
+\end{equation*}
+
+
+\textbf{1. Прямоугольная функция} $f(t) = \begin{cases} 
+a, & |t| \le b, \\ 
+0, & |t| > b. 
+\end{cases}$\\
+
+Выполним преобразование
+\begin{equation*}
+\begin{split}
+    &\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\int\limits_{-b}^{b}ae^{-i\omega t}dt = -a\frac{1}{\sqrt{2\pi}}\frac{e^{-i\omega t}}{i\omega }\Bigg|_{-b}^{b} = a\frac{1}{\sqrt{2\pi}}\Big(\frac{e^{i\omega b}}{i\omega } - \frac{e^{-i\omega b}}{i\omega}\Big) =\\
+    &= a\frac{1}{\sqrt{2\pi}}\frac{e^{i\omega b} - e^{-i\omega b}}{i\omega} = \frac{1}{\sqrt{2\pi}}\frac{2a \sin{\omega b}}{\omega }
+    \end{split}
+\end{equation*}
+
+\textbf{2. Треугольная функция} $f(t) = \begin{cases} 
+a - \left| \frac{at}{b} \right|, & |t| \le b, \\ 
+0, & |t| > b. 
+\end{cases}$\\
+
+Выполним преобразование. Стоит заметить, что функция оказывается четной, ведь аргумент стоит под модулем. Из свойств ряда Фурье, где четные функции раскладываются только на косинусы, преобразование тоже можно упростить и записать через косинус.
+
+\begin{equation*}
+\begin{split}
+    &\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\int\limits_{0}^{b} 2\Big(a-\Big|\frac{at}{b}\Big|\Big) \cos{(\omega t)}dt = \frac{1}{\sqrt{2\pi}}\Big(2a \int_{0}^{b} \cos(\omega t) dt - \frac{2a}{b} \int_{0}^{b} t \cos(\omega t) dt\Big) =\\
+    &= \frac{1}{\sqrt{2\pi}}\Big(2a\left[ \frac{\sin(\omega t)}{\omega} \right]_{0}^{b} - \frac{2a}{b}\left[ \frac{t \sin(\omega t)}{\omega} + \frac{\cos(\omega t)}{\omega^2} \right]_{0}^{b}\Big) =\\
+    &= \frac{1}{\sqrt{2\pi}}\Big(2a\frac{\sin(\omega b)}{\omega}  - \frac{2a}{b}\Big(\frac{b \sin(\omega b)}{\omega} + \frac{\cos(\omega b) - 1}{\omega^2}\Big)\Big) =\\
+    &=\frac{1}{\sqrt{2\pi}}\Big( 2a \left( \frac{\sin(\omega b)}{\omega} \right) - \frac{2a}{b} \left( \frac{b \sin(\omega b)}{\omega} + \frac{\cos(\omega b) - 1}{\omega^2} \right)\Big) = \frac{1}{\sqrt{2\pi}}\frac{4a \sin^2\left(\frac{\omega b}{2}\right)}{b\omega^2}
+\end{split}
+\end{equation*}
+\newpage
+
+\textbf{3. Кардинальный синус} $f(t) = a sinc(bt)$\\
+
+Для данного преобразования снова воспользуемся свойством четной функции, так как кадинальный синус четный при аргументе не равном нулю. 
+\begin{equation*}
+    \hat{f}(\omega) = \begin{cases} 
+\frac{a}{b}\sqrt{\frac{\pi}{2}}, & |\omega| \le b \\ 
+0, & |\omega| > b 
+\end{cases}
+\end{equation*}
+Получили функцию прямоугольника.\\
+
+\textbf{4. Функция Гаусса} $f(t) = ae^{-bt^2}$\\
+
+Воспользуемя открытыми таблицами. Получим следующий вид:
+\begin{equation*}
+    \hat{f}(\omega) = \frac{a}{\sqrt{2b}}e^{-\frac{\omega^2}{4b}}
+\end{equation*}
+
+\textbf{5. Двустороннее затухание} $f(t) = ae^{-b|t|}$\\
+
+Выполним преобразование:
+\begin{equation*}
+    \hat{f}(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} a e^{-b|t|} e^{-i\omega t} dt =\sqrt{\frac{2}{\pi}} a \int_{0}^{\infty} e^{-bt} \cos(\omega t) dt = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2}
+\end{equation*}
+
+\subsection*{2. Построение графиков}
+Зададимся следующими пятью наборами значений $a$ и $b$. Запишем их в виде $(a, b)$ и присвоим каждому набору свой цвет:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        1 & 2 & 3 & 4 & 5\\
+        \hline
+         (1,1) & (0.2, 5) & (5, 0.2) & (2, 10) & (10, 2)\\
+         \hline
+         Синий & Оранжевый & Красный & Зелёный & Жёлтый\\
+         \hline
+    \end{tabular}
+\end{center}
+
+
+Далее на графиках цвета оригинала и образа с одинаковыми параметрами совпадают.\\
+
+
+\textbf{1. Прямоугольная функция}\\
+
+Оригинал: $f(t) = \begin{cases} 
+a, & |t| \le b, \\ 
+0, & |t| > b. 
+\end{cases}$\\
+
+Фурье-образ: $\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\frac{2a \sin{\omega b}}{\omega }$\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/first_t.png}
+    \caption{Оригиналы}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/fisrtomegas.png}
+    \caption{Образы}
+    \label{fig:placeholder}
+\end{figure}
+
+На функции-оригинале параметр $a$ отвечает за высоту графика, а $b$ - за ширину.\\
+В функции-образе, проявляется свойство масштабирования. Более узкие прямоугольники дают более растянутый образ, так как под функцией синуса находится параметр $b$. С помощью параметра $a$ можно компенсировать амплитуду.
+\newpage
+\textbf{2. Треугольная функция}\\
+
+Оригинал: $f(t) = \begin{cases} 
+a - \left| \frac{at}{b} \right|, & |t| \le b, \\ 
+0, & |t| > b. 
+\end{cases}$\\
+
+Фурье-образ: $\hat{f}(\omega) = \frac{1}{\sqrt{2\pi}}\frac{4a \sin^2\left(\frac{\omega b}{2}\right)}{b\omega^2}$\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/second_t.png}
+    \caption{Оригиналы}
+    \label{fig:placeholder}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/second_omegas.png}
+    \caption{Образы}
+    \label{fig:placeholder}
+\end{figure}
+
+В данном случае снова действует свойство масштабирования. На графиках видно, что более узким оригиналам соответствуют более растянутые образы, на это влияет параметр $b$. Параметр $a$ снова отвечает за амплитуду.\\
+
+\textbf{3. Кардинальный синус}\\
+
+Оригинал: $f(t) = a sinc(bt)$\\
+
+Фурье-образ: $\hat{f}(\omega) = \begin{cases} 
+\frac{a}{b}\sqrt{\frac{\pi}{2}}, & |\omega| \le b \\ 
+0, & |\omega| > b 
+\end{cases}$\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/third_t.png}
+    \caption{Оригиналы}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/third_omegas.png}
+    \caption{Образы}
+    \label{fig:placeholder}
+\end{figure}
+
+В данном случае получается операция, обратная пункту 1. Параметр $b$ снова отражает свойство масштабирования. Параметр $a$ влияет на амплитуду.\\
+
+\textbf{4. Функция Гаусса}\\
+
+Оригинал: $f(t) = ae^{-bt^2}$\\
+
+Фурье-образ: $\hat{f}(\omega) = \frac{a}{\sqrt{2b}}e^{-\frac{\omega^2}{4b}}$\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/fourth_t.png}
+    \caption{Оригиналы}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/fourth_omegas.png}
+    \caption{Образы}
+    \label{fig:placeholder}
+\end{figure}
+
+Параметр $a$ отвечает за масштабирование амплитуды, а параметр $b$ - за масштабирование частоты.\\
+
+\textbf{5. Двустороннее затухание}\\
+
+Оригинал: $f(t) = ae^{-b|t|}$\\
+
+Фурье-образ: $\hat{f}(\omega) = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2}$\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/fifth_t.png}
+    \caption{Оригиналы}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/fifth_omegas.png}
+    \caption{Образы}
+    \label{fig:placeholder}
+\end{figure}
+
+Параметр $a$ отвечает за масштабирование амплитуды, а $b$ - за масштабирование частоты.
+
+\subsection*{3. Проверка равенства Парсеваля}
+Равенство Парсеваля для унитарного преобразования имеет следующий вид:
+\begin{equation*}
+    \int\limits_{-\infty}^{\infty} |f(t)|^2 dt = \int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega
+\end{equation*}
+
+Для его проверки воспользуемся языком программирования Python. При численном вычислении интегралов на всей числовой прямой возникает погрешность, поэтому сравнивать численные значения будем с её учетом.\\
+
+\textbf{1. Прямоугольная функция}\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     \hline
+      (1, 1)& 2.0 & 2.000091 & Да \\
+      \hline
+      (0.2, 5)& 0.4& 0.400633& Да \\
+      \hline
+        (5, 0.2)& 10.0 & 10.001321 & Да\\
+        \hline
+        (2, 10)& 80.0  & 79.997822 & Да\\
+        \hline
+        (10, 2)& 400.0 & 400.032956 & Да\\
+        \hline
+\end{tabular}
+\end{center}
+
+\textbf{2. Треугольная функция}\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     \hline
+      (1, 1)& 0.666667 & 0.666667 & Да \\
+      \hline
+      (0.2, 5)&0.133333 &0.133333 & Да \\
+      \hline
+        (5, 0.2)& 3.333333 & 3.333333 & Да\\
+        \hline
+        (2, 10)& 26.666667 & 26.666667 & Да\\
+        \hline
+        (10, 2)& 133.333333 & 133.333333 & Да\\
+        \hline
+\end{tabular}
+\end{center}
+\textbf{3. Кардинальный синус}\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     \hline
+      (1, 1)& 3.141736 & 3.141593 & Да \\
+      \hline
+      (0.2, 5)& 0.025173 & 0.025133& Да \\
+      \hline
+        (5, 0.2)& 392.75094 &392.699082  & Да\\
+        \hline
+        (2, 10)& 1.256603 & 1.256637 & Да\\
+        \hline
+        (10, 2)& 157.092574 & 157.079633 & Да\\
+        \hline
+\end{tabular}
+\end{center}
+\textbf{4. Функция Гаусса}\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     \hline
+      (1, 1)& 1.253314 & 1.253314 & Да \\
+      \hline
+      (0.2, 5)& 0.02242 &0.02242 & Да \\
+      \hline
+        (5, 0.2)& 70.06239 & 70.06239 & Да\\
+        \hline
+        (2, 10)& 1.585331 & 1.585331 & Да\\
+        \hline
+        (10, 2)& 88.622693 & 88.622693 & Да\\
+        \hline
+\end{tabular}
+\end{center}
+
+\textbf{5. Двустороннее затухание}\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     \hline
+      (1, 1)& 1.0 & 1.0 & Да \\
+      \hline
+      (0.2, 5)& 0.008 & 0.008 & Да \\
+      \hline
+        (5, 0.2)& 125.0 & 125.0 & Да\\
+        \hline
+        (2, 10)& 0.4 & 0.4 & Да\\
+        \hline
+        (10, 2)& 50.0 & 50.0 & Да\\
+        \hline
+\end{tabular}
+\end{center}
+
+\newpage
+\section*{Задание 2. Комплексное}
+
+Для выполнения данного задания выберем функцию двустороннего затухания $f(t) = ae^{-b|t|}$. Набор параметров выберем $a=5$, $b=0.2$.\\
+
+Функция $g(t) = f(t + c)$ будет иметь вид $g(t) = ae^{-b|t+c|}$.\\
+
+Выполним унитарное преобразование Фурье, используя свойство сдвига аргумента $f(t+c) \rightarrow e^{i\omega c}\hat{f}(\omega)$:
+
+\begin{equation*}
+    \begin{split}
+    &\hat{g}(\omega) = \frac{a e^{i\omega c}}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-b|t|} e^{-i\omega t} = \hat{g}(\omega) = \frac{a e^{i\omega c}}{\sqrt{2\pi}} \left( \int_{-\infty}^{0} e^{(b-i\omega)t} dt + \int_{0}^{\infty} e^{-(b+i\omega)t} dt \right) =\\
+    & = \frac{a e^{i\omega c}}{\sqrt{2\pi}} \left( \frac{1}{b-i\omega} + \frac{1}{b+i\omega} \right) = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2} e^{i\omega c} = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2} e^{i\omega c}
+    \end{split}
+\end{equation*}
+
+Получаем следующий результат:\\
+
+Оригинал: $g(t) = ae^{-b|t+c|}$.\\
+
+Образ: $\hat{g}(\omega) = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2} e^{i\omega c}$\\
+
+Зададимся набором значений $c$ и присвоим каждому значению свой цвет:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $c_1$ & $c_2$ & $c_3$ & $c_4$ \\
+        \hline
+         -10 & -0.3 & 20 & 5\\
+         \hline
+         Синий & Оранжевый & Красный & Зелёный \\
+         \hline
+    \end{tabular}
+\end{center}
+
+Построим графики $g(t)$ с разными параметрами $c$:\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/tasl2.png}
+    \caption{Оригиналы}
+    \label{fig:placeholder}
+\end{figure}
+
+По графикам видно, что сдвиг функции на $c$ приводит к появлению фазы. Причем сдвиг на положительное значение сдвигает в сторону уменьшения переменной, а на отрицательное - в сторону её увеличения.\\
+
+Для построения графиков образов воспользуемся формулой эйлера $$e^{i\omega c} = \cos(\omega c) + i \sin(\omega c)$$. Тогда образ функции можно записать в виде:
+\begin{equation*}
+    \hat{g}(\omega) = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2} (\cos(\omega c) + i \sin(\omega c))
+\end{equation*} 
+
+Получим:\\
+$Re(\hat{g}(\omega)) = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2} \cos(\omega c)$\\
+$Im(\hat{g}(\omega)) = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2} \sin(\omega c)$\\
+$|\hat{g}(\omega)| = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2}$\\
+
+Построим графики образов:\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/re.png}
+    \caption{Образы. Вещественная часть}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/im.png}
+    \caption{Образы. Мнимая часть}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{imgs/abs.png}
+    \caption{Образы. Абсолютное значение}
+    \label{fig:placeholder}
+\end{figure}
+
+На графиках видно, что параметр $c$ не влияет на абсолютное значение образа. Но на вещественной и мнимой части наблюдается изменение частоты колебаний, которое зависит от параметра $c$. Чем больше по модулю $c$, тем больше частота колебаний.\\
+
+\newpage
+\section*{Задание 3. Музыкальное}
+Для выполнения данного задания был выбран аудиофрагмет "Аккорд 28".\\
+На языке Python напишем код для извлечения данных из фрагмента с использованием библиотеки librosa. Получим массив амплитуд и частот и на его основании построим график.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{imgs/mus_graph.png}
+    \caption{Аккорд 28}
+    \label{fig:task3}
+\end{figure}
+
+Выполним численное интегрирование для получения Фурье-образа. Для этого на языке Python воспользуемся функцией trapz из библиотеки scipy. Получим массив амплитуд и частот и на его основании построим график модуля Фурье-Образа. На графике отметим частоту для самых больших амплитуд.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{imgs/furie_music.png}
+    \caption{Преобразование Фурье для аккорда 28}
+    \label{fig:task3_fourier}
+\end{figure}
+
+Чем больше амплитуда на конкретной частоте, тем больший вклад вносит нота с этой частотой в аккорд. Определим 6 самых часто встречающиеся частоты: 170Гц, 790Гц, 295Гц, 525Гц, 395Гц, 680Гц .\\
+Воспользуемся таблицами из интернета для определения нот по частотам.\\
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Частота & Нота \\
+    \hline
+    170Гц & Фа 3-й октавы \\
+    \hline
+    295Гц & Ре 4-й октавы \\
+    \hline
+    525Гц & До 5-й октавы \\
+    \hline
+    395Гц & Соль 4-й октавы \\
+    \hline
+\end{tabular}
+\end{center}
+
+\section*{Выводы}
+В данной лабораторной работе было рассмотрено унитарное преобразование Фурье для различных функций и его свойства.\\
+В ходе выполнения трёх заданий нами было изучено, как работает преобразование Фурье. Оказалось, что это очень важный элемент для обработки реальных сигналов. 
+Его полезность заключается в том, что в реальности сигнал поступает единожды, а ряд Фурье требует бесконечный сигнал. Для этого мы берем наш сигнал, достраиваем его до бесконечного, но устремляем период на бесконечность.
+Благодаря этому получаем образ, с которым можем работать.\\
+С помощью лабораторной работы мы смогли посмотреть работу преобразования Фурье на практике и подобрать ноты для аккорда. 
+
+\end{document}

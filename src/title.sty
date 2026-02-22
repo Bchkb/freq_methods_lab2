@@ -1,0 +1,86 @@
+\ProvidesPackage{vpdtitle}
+
+\usepackage{paracol}
+\usepackage[noblocks]{authblk}
+\usepackage{geometry}
+
+\geometry{top=2cm, left=2cm, right=2cm, left=2cm}
+
+\renewcommand\Authsep{,\newline }
+\renewcommand\Authand{,\newline }
+\renewcommand\Authands{, }
+\setlength{\affilsep}{1em}
+\renewcommand\Affilfont{\itshape\small}
+
+
+\newcommand{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand{\@supervisor}{}
+
+\renewcommand{\abstract}[1]{\gdef\@abstract{#1}}
+\newcommand{\@abstract}{}
+
+\newcommand{\keywords}[1]{\gdef\@keywords{#1}}
+\newcommand{\@keywords}{}
+
+\renewcommand\maketitle{
+
+
+    \begin{titlepage}
+
+        \vspace*{1cm}
+
+        \begin{center}
+
+            \includegraphics[height=2cm]{images/logo_basic_russian_black.pdf}
+
+            \vspace{5mm}
+
+            Факультет систем управления и роботехники
+
+            \vspace{4cm}
+
+            {\Large \bfseries \MakeUppercase{\@title}}
+
+        \end{center}
+
+        \vspace{3cm}
+
+        \columnratio{0.7, 0.3}
+        \columnsep = 1cm
+        \begin{paracol}{2}
+            \begin{leftcolumn}
+                % \textbf{Аннотация} -- \@abstract
+
+                % \vspace{1em}
+
+                % \noindent
+                % \textbf{Ключевые слова}: \@keywords
+            \end{leftcolumn}
+
+            \begin{rightcolumn}
+                \setlength{\parindent}{0cm}
+
+                \textbf{Выполнил}
+                \vspace{1em}
+
+                {\@author}
+
+                \vspace{1em}
+
+                \textbf{Проверил}
+                \vspace{1em}
+
+                {\@supervisor}
+                
+            \end{rightcolumn}
+        \end{paracol}
+
+
+        \vfill
+
+        \begin{center}
+            \@date
+        \end{center}
+
+    \end{titlepage}
+}
