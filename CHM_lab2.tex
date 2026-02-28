@@ -74,42 +74,39 @@
         \end{center}
     \end{minipage}
     \hfill
-    \noindent\begin{minipage}{0.5\textwidth}
-
+    \noindent\begin{minipage}{0.4\textwidth}
+    \includegraphics[width=\linewidth]{imgs/logo-itmo.png}
     \end{minipage}
 
-    \vspace{4cm}
+    \vspace{0.5cm}
     \hrule % Горизонтальная линия
-    \vspace{1cm}
+    \vspace{0.5cm}
 
     % \begin{tabular}{|m{8cm}|m{8cm}|}
-
-     Работу выполнили: \uline{Тарасов Степан, Пономарёв Илья, Мусаев Фуад}\\
-    \vspace{0.3cm}
-    Преподаватель:  \uline{Пашенко Артём Витальевич}\\
-
+    \raggedright
+     Работу выполнили: \uline{ Тарасов Степан$^{(467670)}$, Мусаев Фуад$^{(466799)}$, Пономарев Илья$^{(467150)}$}\\
+    \vspace{0.1cm}
+    Преподаватель:  \uline{ Пашенко Артем Витальевич}\\
+    \vspace{0.1cm}
     
-    \vspace{1cm}
+    \vspace{0.5cm}
     \hrule % Горизонтальная линия
-\
+    \vspace{0.5cm}
 
-    \vspace{4cm}
-
-    \hrule
-
-    \vspace{0.7cm}
-    
+    \vspace{3.5cm}
+        
     \begin{center}
-        \textbf{\Large Лабораторная работа №2 по дисциплине "Частотные методы"}
+        \textbf{\Large ЛАБОРАТОРНАЯ РАБОТА №2}
     
         \vspace{0.7cm}
         \hrule % Горизонтальная линия
         \vspace{0.5cm}
-    \Large \textbf{Преобразование Фурье}
-        %\textbf{\large{Моделирование работы RC-фильтра}}
-        %\vspace{0.5cm}
-        %\hrule
-        %\vspace{1cm}
+    
+        \textbf{\large{Преобразование Фурье}}
+    
+        \vspace{0.5cm}
+        \hrule % Горизонтальная линия
+        \vspace{1cm}
         
         \vfill
         Санкт-Петербург, 2026
@@ -543,5 +540,166 @@ $|\hat{g}(\omega)| = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2}$\\
 Его полезность заключается в том, что в реальности сигнал поступает единожды, а ряд Фурье требует бесконечный сигнал. Для этого мы берем наш сигнал, достраиваем его до бесконечного, но устремляем период на бесконечность.
 Благодаря этому получаем образ, с которым можем работать.\\
 С помощью лабораторной работы мы смогли посмотреть работу преобразования Фурье на практике и подобрать ноты для аккорда. 
+
+\newpage
+\section*{Приложения}
+
+\textbf{Листинг для проверки равенства Парсеваля:}
+\begin{lstlisting}[label=lst:square_wave_grafic_building, language=Python, style=mystyle]
+from scipy import integrate
+import numpy as np
+
+def equation(f_t, f_w):
+    fun_t = integrate.quad(f_t, -np.inf, np.inf)
+    fun_w = integrate.quad(f_w, -np.inf, np.inf)
+    if abs(fun_t[0] - fun_w[0]) < 0.000001:
+        check = 1
+    else:
+        check = 0
+    return round(fun_t[0], 6), round(fun_w[0], 6), check
+
+def f_t(t, a, b):
+    # функция квадрата
+    # if abs(t) <= b: 
+    #     return a
+    # else:
+    #     return 0
+
+    #Функция треугольника
+    # if abs(t) <= b:
+    #     return a - abs(a*t/b)
+    # else:
+    #     return 0
+
+    #Кардинальный синус
+    # return a * np.sin(b * t) / (b * t)
+
+    #Функция Гаусс
+    # return a * np.exp(-b*t**2) 
+
+    #Двустороннее затухание
+    return a * np.exp(-b* abs(t))
+
+
+def f_w(w, a, b):
+    # функция квадрата
+    # return (1/np.sqrt(2 * np.pi)) * 2*a*np.sin(w * b)/w 
+
+    #Функция треугольника
+    # return (1/np.sqrt(2 * np.pi)) * ((4 * a * np.sin(w*b/2)**2)/(b*w**2))
+
+    #Кардинальный синус
+    # if abs(w) <= b:
+    #     return (a / b) * np.sqrt(np.pi / 2)
+    # else:
+    #     return 0
+
+    #Функция Гаусс
+    # return a * np.sqrt(np.pi / b) * np.exp(-(w**2) / (4 * b)) 
+
+    #Двустороннее затухание
+    return a * np.sqrt(2/np.pi) * (b/(b**2 + w**2))
+
+def result_func():
+    ab = [[1, 1], [0.2, 5], [5, 0.2], [2, 10], [10, 2]]
+
+    for sample in ab:
+        a = sample[0]
+        b = sample[1]
+        print(equation(lambda t: f_t(t, a, b)**2, lambda w:f_w(w, a, b)**2))
+\end{lstlisting}
+
+\textbf{Листинг для извлечения данных из аудиофрагмента и построения графика:}
+\begin{lstlisting}[label=lst:square_wave_grafic_building, language=Python, style=mystyle]
+import librosa
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
+
+# ЗАГРУЗКА ПОЛНОГО MP3 ФАЙЛА 
+path = 'music.mp3'
+f_t, fs = librosa.load(path, sr=None, mono=True)
+
+# Создаем массив времени для всего файла
+time_axis = np.linspace(0, len(f_t) / fs, len(f_t))
+
+print(f"Файл загружен. Длительность: {len(f_t)/fs:.2f} сек. Отсчетов: {len(f_t)}")
+
+# НАСТРОЙКА ЧАСТОТНОЙ СЕТКИ 
+V_max = 1000  
+dv = 5        
+v_axis = np.arange(-V_max, V_max, dv)
+
+# ЧИСЛЕННОЕ ИНТЕГРИРОВАНИЕ
+print(f"Вычисляю численный интеграл для {len(v_axis)} частот...")
+
+dt = 1 / fs
+
+exponent = np.exp(-2j * np.pi * np.outer(v_axis, time_axis))
+Y = np.dot(exponent, f_t) * dt
+
+print("Расчет завершен успешно.")
+amplitude_spectrum = np.abs(Y)
+peaks, properties = find_peaks(amplitude_spectrum, 
+                               height=np.max(amplitude_spectrum)*0.1, 
+                               distance=len(v_axis)/20)
+# ВИЗУАЛИЗАЦИЯ 
+plt.figure(figsize=(12, 8))
+plt.plot(v_axis, np.abs(Y), color='crimson')
+plt.title('Модуль Фурье-образа')
+plt.xlabel('Частота (Гц)')
+plt.ylabel('Амплитуда')
+plt.grid(True)
+
+plt.tight_layout()
+for peak in peaks:
+    freq = v_axis[peak]
+    amp = amplitude_spectrum[peak]
+    plt.annotate(f'{freq:.0f} Hz', 
+                 xy=(freq, amp), 
+                 xytext=(10, 5), 
+                 textcoords='offset points', 
+                 fontsize=9, 
+                 color='darkred',
+                 fontweight='bold')
+plt.show()
+\end{lstlisting}
+
+\textbf{Листинг для преобразования Фурье для аккорда 28:}
+\begin{lstlisting}[label=lst:square_wave_grafic_building, language=Python, style=mystyle]
+import librosa
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Загрузка всего файла
+path = 'music.mp3'
+f_t, fs = librosa.load(path, sr=None, mono=True)
+
+def music_data():
+    return f_t
+
+print(f"Файл загружен полностью.")
+print(f"Частота дискретизации: {fs} Гц")
+print(f"Общее количество отсчетов: {len(f_t)}")
+print(f"Длительность: {len(f_t)/fs:.2f} секунд")
+
+# Построение графика для всей длины массива
+plt.figure(figsize=(15, 5))
+
+# Создаем временную ось для всего файла
+time_axis = np.linspace(0, len(f_t) / fs, len(f_t))
+
+# Строим весь сигнал
+plt.plot(time_axis, f_t, color='steelblue', lw=0.5) 
+
+plt.title('Аккорд 28')
+plt.xlabel('Время (секунды)')
+plt.ylabel('Амплитуда')
+plt.grid(True, alpha=0.3)
+
+plt.xlim(0, len(f_t) / fs)
+plt.tight_layout()
+plt.show()
+\end{lstlisting}
 
 \end{document}
