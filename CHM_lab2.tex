@@ -113,7 +113,6 @@
     \end{center}
 \end{titlepage}
 
-
 \newpage
 \section*{Задание 1. Вещественное}
 \subsection*{1. Выполним унитарное преобразование Фурье для каждой функции}
@@ -327,7 +326,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
     \hline
-     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
       (1, 1)& 2.0 & 2.000091 & Да \\
       \hline
@@ -346,7 +345,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
     \hline
-     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
       (1, 1)& 0.666667 & 0.666667 & Да \\
       \hline
@@ -364,7 +363,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
     \hline
-     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
       (1, 1)& 3.141736 & 3.141593 & Да \\
       \hline
@@ -382,7 +381,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
     \hline
-     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
       (1, 1)& 1.253314 & 1.253314 & Да \\
       \hline
@@ -401,7 +400,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
     \hline
-     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Равны\\
+     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
       (1, 1)& 1.0 & 1.0 & Да \\
       \hline
@@ -415,6 +414,8 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
         \hline
 \end{tabular}
 \end{center}
+
+Проведя вычисления, мы видим, что для всех функций выполняется равенство Парсеваля с некоторой допустимой точностью.
 
 \newpage
 \section*{Задание 2. Комплексное}
@@ -474,21 +475,21 @@ $|\hat{g}(\omega)| = a \sqrt{\frac{2}{\pi}} \frac{b}{b^2 + \omega^2}$\\
 Построим графики образов:\\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/re.png}
+    \includegraphics[width=1\linewidth]{imgs/re_fix.png}
     \caption{Образы. Вещественная часть}
     \label{fig:placeholder}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/im.png}
+    \includegraphics[width=1\linewidth]{imgs/im_fix.png}
     \caption{Образы. Мнимая часть}
     \label{fig:placeholder}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/abs.png}
+    \includegraphics[width=1\linewidth]{imgs/g_fix.png}
     \caption{Образы. Абсолютное значение}
     \label{fig:placeholder}
 \end{figure}
