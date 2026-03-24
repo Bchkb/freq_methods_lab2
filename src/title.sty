@@ -1,86 +1,44 @@
-\ProvidesPackage{vpdtitle}
+\ProvidesPackage{src/title}
 
-\usepackage{paracol}
-\usepackage[noblocks]{authblk}
-\usepackage{geometry}
+% Определение стилей для листингов кода
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-\geometry{top=2cm, left=2cm, right=2cm, left=2cm}
-
-\renewcommand\Authsep{,\newline }
-\renewcommand\Authand{,\newline }
-\renewcommand\Authands{, }
-\setlength{\affilsep}{1em}
-\renewcommand\Affilfont{\itshape\small}
-
-
-\newcommand{\supervisor}[1]{\gdef\@supervisor{#1}}
-\newcommand{\@supervisor}{}
-
-\renewcommand{\abstract}[1]{\gdef\@abstract{#1}}
-\newcommand{\@abstract}{}
-
-\newcommand{\keywords}[1]{\gdef\@keywords{#1}}
-\newcommand{\@keywords}{}
-
-\renewcommand\maketitle{
-
-
-    \begin{titlepage}
-
-        \vspace*{1cm}
-
-        \begin{center}
-
-            \includegraphics[height=2cm]{images/logo_basic_russian_black.pdf}
-
-            \vspace{5mm}
-
-            Факультет систем управления и роботехники
-
-            \vspace{4cm}
-
-            {\Large \bfseries \MakeUppercase{\@title}}
-
-        \end{center}
-
-        \vspace{3cm}
-
-        \columnratio{0.7, 0.3}
-        \columnsep = 1cm
-        \begin{paracol}{2}
-            \begin{leftcolumn}
-                % \textbf{Аннотация} -- \@abstract
-
-                % \vspace{1em}
-
-                % \noindent
-                % \textbf{Ключевые слова}: \@keywords
-            \end{leftcolumn}
-
-            \begin{rightcolumn}
-                \setlength{\parindent}{0cm}
-
-                \textbf{Выполнил}
-                \vspace{1em}
-
-                {\@author}
-
-                \vspace{1em}
-
-                \textbf{Проверил}
-                \vspace{1em}
-
-                {\@supervisor}
-                
-            \end{rightcolumn}
-        \end{paracol}
-
-
-        \vfill
-
-        \begin{center}
-            \@date
-        \end{center}
-
-    \end{titlepage}
+% Основной стиль для всех листингов
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
 }
+
+% Применяем стиль
+\lstset{style=mystyle}
+\lstset{extendedchars=true}
+
+% Команда для вывода листинга Python-файла с заголовком
+\newcommand{\pythonlisting}[2]{%
+    \section*{Листинг -- #1}
+    \lstinputlisting[language=Python, caption={#1}]{#2}
+}
+
+% Команда для встроенного листинга
+\newcommand{\pythoncode}[1]{%
+    \lstinline[language=Python]|#1|
+}
+
+\endinput
