@@ -4,10 +4,8 @@ import matplotlib.pyplot as plt
 # Параметры из таблицы: (a, b, цвет, название)
 data_points = [
     (1.0, 1.0, 'blue',   'Базовый'),
-    (1.5, 0.5, 'orange', 'Высокий и узкий'),
-    (0.5, 2.0, 'red',    'Низкий и широкий'),
-    (1.2, 1.5, 'green',  'Средний'),
-    (0.8, 0.8, 'purple', 'Уменьшенный')
+    (3, 1, 'orange', 'Высокий и узкий'),
+    (1.0, 3, 'red',    'Низкий и широкий'),
 ]
 
 t = np.linspace(-10, 10, 1000)
@@ -23,7 +21,6 @@ def create_plot(title, original_func, fourier_func):
         ax1.plot(t, original_func(t, a, b), color=col, label=f'a={a}, b={b} ({lbl})')
     ax1.set_title("Оригинал f(t)")
     ax1.grid(True)
-    ax1.legend(prop={'size': 8})
 
     # Правый график - Фурье-образ
     ax2 = plt.subplot(1, 2, 2)
