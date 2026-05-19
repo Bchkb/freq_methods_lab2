@@ -53,10 +53,11 @@ def f_w(w, a, b):
     return a * np.sqrt(2/np.pi) * (b/(b**2 + w**2))
 
 def result_func():
-    ab = [[1, 1], [0.2, 5], [5, 0.2], [2, 10], [10, 2]]
+    ab = [[1, 1], [1.5, 0.5], [0.5, 2], [1.2, 1.5], [0.8, 0.8]]
 
     for sample in ab:
         a = sample[0]
         b = sample[1]
         print(equation(lambda t: f_t(t, a, b)**2, lambda w:f_w(w, a, b)**2))
 
+print(result_func())

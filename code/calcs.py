@@ -20,7 +20,7 @@ def F_w(w, a, b):
 energy_time, error_t = quad(lambda t: f_t(t, a, b)**2, -np.inf, np.inf)
 
 # Энергия в частоте: (1 / 2*pi) * интеграл от -inf до +inf |F(w)|^2 dw
-energy_freq, error_w = quad(lambda w: (1 / (2 * np.pi)) * F_w(w, a, b)**2, -np.inf, np.inf)
+energy_freq, error_w = quad(lambda w: F_w(w, a, b)**2, -np.inf, np.inf)
 
 # 4. Вывод результатов в консоль
 print(f"--- Результаты (a={a}, b={b}) ---")

@@ -21,7 +21,6 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage[colorlinks]{hyperref}
 \usepackage{indentfirst}
-\usepackage{src/title}
 \usepackage{bookmark}
 \usepackage{hyperref}
 
@@ -112,6 +111,7 @@
     \end{center}
 \end{titlepage}
 
+
 \newpage
 \section*{Задание 1. Вещественное}
 \subsection*{1. Выполним унитарное преобразование Фурье для каждой функции}
@@ -183,9 +183,9 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
         \hline
         1 & 2 & 3 & 4 & 5\\
         \hline
-         (1,1) & (0.2, 5) & (5, 0.2) & (2, 10) & (10, 2)\\
+         (1,1) & (1.5, 0.5) & (0.5, 2) & (1.2, 1.5) & (0.8, 0.8)\\
          \hline
-         Синий & Оранжевый & Красный & Зелёный & Жёлтый\\
+         Синий & Оранжевый & Красный & Зелёный & Фиолетовый\\
          \hline
     \end{tabular}
 \end{center}
@@ -205,20 +205,14 @@ a, & |t| \le b, \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/first_t.png}
-    \caption{Оригиналы}
+    \includegraphics[width=1\linewidth]{imgs/1.png}
+    \caption{Прямоугольная функция}
     %\label{fig:placeholder}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{imgs/fisrtomegas.png}
-    \caption{Образы}
-    %\label{fig:placeholder}
-\end{figure}
 
 На функции-оригинале параметр $a$ отвечает за высоту графика, а $b$ - за ширину.\\
-В функции-образе, проявляется свойство масштабирования. Более узкие прямоугольники дают более растянутый образ, так как под функцией синуса находится параметр $b$. С помощью параметра $a$ можно компенсировать амплитуду.
+В функции-образе, проявляется свойство масштабирования, связанное с параметром $b$ и свойство линейности, связанное с параметром $a$. Более узкие прямоугольники дают более растянутый образ, так как под функцией синуса находится параметр $b$. С помощью параметра $a$ можно компенсировать амплитуду.
 \newpage
 \textbf{2. Треугольная функция}\\
 
@@ -231,18 +225,13 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/second_t.png}
-    \caption{Оригиналы}
-    %\label{fig:placeholder}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{imgs/second_omegas.png}
-    \caption{Образы}
+    \includegraphics[width=1\linewidth]{imgs/2.png}
+    \caption{Треугольная функция}
     %\label{fig:placeholder}
 \end{figure}
 
-В данном случае снова действует свойство масштабирования. На графиках видно, что более узким оригиналам соответствуют более растянутые образы, на это влияет параметр $b$. Параметр $a$ снова отвечает за амплитуду.\\
+
+В данном случае снова действует свойство масштабирования на параметре $b$, а параметр $a$ показывает свойство линейности. На графиках видно, что более узким оригиналам соответствуют более растянутые образы, на это влияет параметр $b$. Параметр $a$ снова отвечает за амплитуду.\\
 
 \textbf{3. Кардинальный синус}\\
 
@@ -255,19 +244,13 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/third_t.png}
-    \caption{Оригиналы}
+    \includegraphics[width=1\linewidth]{imgs/3.png}
+    \caption{Кардинальный синус}
     %\label{fig:placeholder}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{imgs/third_omegas.png}
-    \caption{Образы}
-    %\label{fig:placeholder}
-\end{figure}
 
-В данном случае получается операция, обратная пункту 1. Параметр $b$ снова отражает свойство масштабирования. Параметр $a$ влияет на амплитуду.\\
+В данном случае получается операция, обратная пункту 1. Параметр $b$ снова отражает свойство масштабирования. Параметр $a$ влияет на амплитуду и отражает свойство линейности.\\
 
 \textbf{4. Функция Гаусса}\\
 
@@ -277,19 +260,13 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/fourth_t.png}
-    \caption{Оригиналы}
+    \includegraphics[width=1\linewidth]{imgs/4.png}
+    \caption{Функция Гаусса}
     %\label{fig:placeholder}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{imgs/fourth_omegas.png}
-    \caption{Образы}
-    %\label{fig:placeholder}
-\end{figure}
 
-Параметр $a$ отвечает за масштабирование амплитуды, а параметр $b$ - за масштабирование частоты.\\
+Параметр $a$ отражает свойство линейности, а параметр $b$ - масштабирования.\\
 
 \textbf{5. Двустороннее затухание}\\
 
@@ -299,17 +276,11 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/fifth_t.png}
-    \caption{Оригиналы}
+    \includegraphics[width=1\linewidth]{imgs/5.png}
+    \caption{Двустороннее затухание}
     %\label{fig:placeholder}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{imgs/fifth_omegas.png}
-    \caption{Образы}
-    %\label{fig:placeholder}
-\end{figure}
 
 Параметр $a$ отвечает за масштабирование амплитуды, а $b$ - за масштабирование частоты.
 
@@ -329,13 +300,13 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
      \hline
       (1, 1)& 2.0 & 2.000091 & Да \\
       \hline
-      (0.2, 5)& 0.4& 0.400633& Да \\
+      (1.5, 0.5)& 2.25& 2.250237& Да \\
       \hline
-        (5, 0.2)& 10.0 & 10.001321 & Да\\
+        (0.5, 2)& 1.0 & 1.000082 & Да\\
         \hline
-        (2, 10)& 80.0  & 79.997822 & Да\\
+        (1.2, 1.5)& 4.32 & 4.320921 & Да\\
         \hline
-        (10, 2)& 400.0 & 400.032956 & Да\\
+        (0.8, 0.8)& 1.024 & 1.02382 & Да\\
         \hline
 \end{tabular}
 \end{center}
@@ -346,15 +317,16 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
     \hline
      $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
+      \hline
       (1, 1)& 0.666667 & 0.666667 & Да \\
       \hline
-      (0.2, 5)&0.133333 &0.133333 & Да \\
+      (1.5, 0.5)& 0.75& 0.75& Да \\
       \hline
-        (5, 0.2)& 3.333333 & 3.333333 & Да\\
+        (0.5, 2)& 0.333333& 0.333333 & Да\\
         \hline
-        (2, 10)& 26.666667 & 26.666667 & Да\\
+        (1.2, 1.5)& 1.44 & 1.44 & Да\\
         \hline
-        (10, 2)& 133.333333 & 133.333333 & Да\\
+        (0.8, 0.8)& 0.341333 & 0.341333 & Да\\
         \hline
 \end{tabular}
 \end{center}
@@ -364,15 +336,15 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
     \hline
      $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
-      (1, 1)& 3.141736 & 3.141593 & Да \\
+      (1, 1)& 3.141736 & 3.141593& Да \\
       \hline
-      (0.2, 5)& 0.025173 & 0.025133& Да \\
+      (1.5, 0.5)&14.138658 & 14.137167& Да \\
       \hline
-        (5, 0.2)& 392.75094 &392.699082  & Да\\
+        (0.5, 2)& 0.392731& 0.392699 & Да\\
         \hline
-        (2, 10)& 1.256603 & 1.256637 & Да\\
+        (1.2, 1.5)&3.016572  & 3.015929 & Да\\
         \hline
-        (10, 2)& 157.092574 & 157.079633 & Да\\
+        (0.8, 0.8)& 2.512833 & 2.513274 & Да\\
         \hline
 \end{tabular}
 \end{center}
@@ -380,17 +352,17 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
     \hline
-     $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
-     \hline
-      (1, 1)& 1.253314 & 1.253314 & Да \\
+    $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
+    \hline
+    (1, 1)& 1.253314 & 7.874805 & Да \\
       \hline
-      (0.2, 5)& 0.02242 &0.02242 & Да \\
+      (1.5, 0.5)&3.988021 &25.057476 & Да \\
       \hline
-        (5, 0.2)& 70.06239 & 70.06239 & Да\\
+        (0.5, 2)&0.221557 & 1.392082 & Да\\
         \hline
-        (2, 10)& 1.585331 & 1.585331 & Да\\
+        (1.2, 1.5)& 1.47359 & 9.258842& Да\\
         \hline
-        (10, 2)& 88.622693 & 88.622693 & Да\\
+        (0.8, 0.8)& 0.896799 & 5.634752 & Да\\
         \hline
 \end{tabular}
 \end{center}
@@ -401,15 +373,15 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
     \hline
      $(a, b)$& $\int\limits_{-\infty}^{\infty} |f(t)|^2 dt$ & $\int\limits_{-\infty}^{\infty}|f(\omega)|^2d\omega$ & Приблизительно равны\\
      \hline
-      (1, 1)& 1.0 & 1.0 & Да \\
+     (1, 1)& 1.0 & 1.0& Да \\
       \hline
-      (0.2, 5)& 0.008 & 0.008 & Да \\
+      (1.5, 0.5)&4.5 & 4.5& Да \\
       \hline
-        (5, 0.2)& 125.0 & 125.0 & Да\\
+        (0.5, 2)& 0.125& 0.125 & Да\\
         \hline
-        (2, 10)& 0.4 & 0.4 & Да\\
+        (1.2, 1.5)& 0.96 & 0.96 & Да\\
         \hline
-        (10, 2)& 50.0 & 50.0 & Да\\
+        (0.8, 0.8)& 0.8 & 0.8 & Да\\
         \hline
 \end{tabular}
 \end{center}
@@ -419,7 +391,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 \newpage
 \section*{Задание 2. Комплексное}
 
-Для выполнения данного задания выберем функцию двустороннего затухания $f(t) = ae^{-b|t|}$. Набор параметров выберем $a=5$, $b=0.2$.\\
+Для выполнения данного задания выберем функцию двустороннего затухания $f(t) = ae^{-b|t|}$. Набор параметров выберем $a=1.5$, $b=0.5$.\\
 
 Функция $g(t) = f(t + c)$ будет иметь вид $g(t) = ae^{-b|t+c|}$.\\
 
@@ -454,7 +426,7 @@ a - \left| \frac{at}{b} \right|, & |t| \le b, \\
 Построим графики $g(t)$ с разными параметрами $c$:\\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{imgs/tasl2.png}
+    \includegraphics[width=1\linewidth]{imgs/org.png}
     \caption{Оригиналы}
     %\label{fig:placeholder}
 \end{figure}

@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 1. Фиксированные параметры из условия
-a_fixed = 5.0
-b_fixed = 0.2
+a_fixed = 1.5
+b_fixed = 0.5
 c_norm_const = np.sqrt(2.0 / np.pi)
 
 # Параметры сдвига 'c' и соответствующие цвета из таблицы
