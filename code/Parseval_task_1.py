@@ -13,10 +13,10 @@ def equation(f_t, f_w):
     
     return round(integral_t, 6), round(integral_w, 6)
 
-def f_t_rect(t, a, b):
+def f_t_rectangle(t, a, b):
     return a if abs(t) <= b else 0
 
-def f_w_rect(w, a, b):
+def f_w_rectangle(w, a, b):
     if abs(w) < 1e-10:
         return (1/np.sqrt(2 * np.pi)) * 2 * a * b
     return (1/np.sqrt(2 * np.pi)) * 2 * a * np.sin(w * b) / w
@@ -53,29 +53,29 @@ def f_t_exp(t, a, b):
 def f_w_exp(w, a, b):
     return a * np.sqrt(2 / np.pi) * (b / (b**2 + w**2))
 
-test_params = [[1, 1], [3, 1], [1, 3]]
+a_b = [[1, 1], [3, 1], [1, 3]]
 
 print("Прямоугольная функция")
-for a, b in test_params:
-    int_t, int_w = equation(lambda t: f_t_rect(t, a, b)**2, lambda w: f_w_rect(w, a, b)**2)
+for a, b in a_b:
+    int_t, int_w = equation(lambda t: f_t_rectangle(t, a, b)**2, lambda w: f_w_rectangle(w, a, b)**2)
     print(f"({a}, {b}): {int_t} {int_w}")
 
 print("\nТреугольная функция")
-for a, b in test_params:
+for a, b in a_b:
     int_t, int_w = equation(lambda t: f_t_triangle(t, a, b)**2, lambda w: f_w_triangle(w, a, b)**2)
     print(f"({a}, {b}): {int_t} {int_w}")
 
 print("\nКардинальный синус")
-for a, b in test_params:
+for a, b in a_b:
     int_t, int_w = equation(lambda t: f_t_sinc(t, a, b)**2, lambda w: f_w_sinc(w, a, b)**2)
     print(f"({a}, {b}): {int_t} {int_w}")
 
 print("\nФункция Гаусса")
-for a, b in test_params:
+for a, b in a_b:
     int_t, int_w = equation(lambda t: f_t_gauss(t, a, b)**2, lambda w: f_w_gauss(w, a, b)**2)
     print(f"({a}, {b}): {int_t} {int_w}")
 
 print("\nДвустороннее затухание")
-for a, b in test_params:
+for a, b in a_b:
     int_t, int_w = equation(lambda t: f_t_exp(t, a, b)**2, lambda w: f_w_exp(w, a, b)**2)
     print(f"({a}, {b}): {int_t} {int_w}")

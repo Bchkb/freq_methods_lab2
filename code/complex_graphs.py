@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 1. Фиксированные параметры из условия
-a_fixed = 1.5
-b_fixed = 0.5
+a_fixed = 1
+b_fixed = 3
 c_norm_const = np.sqrt(2.0 / np.pi)
 
 # Параметры сдвига 'c' и соответствующие цвета из таблицы
@@ -28,7 +28,7 @@ def setup_ax(ax, title):
 # --- ОКНО 1: Модуль (он будет один для всех, так как a и b фиксированы) ---
 plt.figure("Модуль спектра (Фиксированный)", figsize=(9, 5))
 envelope = (c_norm_const * a_fixed * b_fixed) / (b_fixed**2 + w**2)
-plt.plot(w, envelope, color='black', lw=2, label=f'Огибающая (a=5, b=0.2)')
+plt.plot(w, envelope, color='black', lw=2, label=f'Огибающая (a=1, b=3)')
 setup_ax(plt.gca(), r'Модуль спектра $|\hat{g}(\omega)|$ (одинаков для всех $c$)')
 plt.legend()
 
