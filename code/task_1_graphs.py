@@ -39,8 +39,8 @@ def create_and_save_plot(filename, original_func, fourier_func):
         ax1.plot(t, original_func(t, a, b), color=col, label=lbl, 
                  linewidth=lw, alpha=alp, zorder=z, linestyle=ls)
     
-    ax1.set_xlabel('Время $t$', fontsize=14)
-    ax1.set_ylabel('Амплитуда $f(t)$', fontsize=14)
+    ax1.set_xlabel('Время $t$', fontsize=12)
+    ax1.set_ylabel('Амплитуда $f(t)$', fontsize=12)
     ax1.grid(True, linestyle='--', alpha=0.5)
     
     ylim_ax1 = ax1.get_ylim()
